@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Deployment
+
+- Configure Netlify through `@netlify/vite-plugin-tanstack-start` and `netlify.toml`; retain the Lovable Vite wrapper so preview and app integrations remain intact.
