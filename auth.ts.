@@ -1,0 +1,20 @@
+   import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+   import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+   import { logEvent } from "firebase/analytics";
+   import { auth, db, analyticsPromise } from "./firebase";
+
+   export async function signInWithGoogle() {
+     await signInWithPopup(auth, new GoogleAuthProvider());
+     const user = auth.currentUser;
+     if (!user) return;
+     const analytics = await analyticsPromise;
+     if (analytics) logEvent(analytics, "login", { method: "google" });
+     await addDoc(collection(db, "signins"), {
+       uid: user.uid,
+       email: user.email,
+       provider: "google",
+       createdAt: serverTimestamp(),
+     });
+   }
+
+   export const signOutUser = () => signOut(auth);
