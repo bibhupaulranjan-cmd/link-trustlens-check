@@ -84,7 +84,7 @@ export function analyzeUrl(raw: string, now = new Date()): ScanReport {
   const url = normalizeUrl(raw);
   const host = url.hostname.toLowerCase();
   const labels = host.split(".");
-  const tld = labels[labels.length - 1];
+  const tld = labels[labels.length - 1] ?? "";
   const registrable = labels.slice(-2).join(".");
   const findings: Finding[] = [];
   const add = (f: Finding) => findings.push(f);
