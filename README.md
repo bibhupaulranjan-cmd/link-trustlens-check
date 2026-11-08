@@ -4,7 +4,7 @@ Implement exactly the screenshot and nothing else
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://6af02e02b3d0e127ed0a882a--trustlink-check.netlify.app/
+**Live app**: https://trustlink-check.netlify.app
 
 ## Build with Lovable
 
