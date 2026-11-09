@@ -31,4 +31,4 @@ use the editor.
 
 ## Deployment
 
-- Configure Netlify through `@netlify/vite-plugin-tanstack-start` and `netlify.toml`; retain the Lovable Vite wrapper so preview and app integrations remain intact.
+- Configure Netlify through `@netlify/vite-plugin-tanstack-start` and `netlify.toml`, publishing `dist/client`; retain the Lovable Vite wrapper so preview integrations and TanStack server-rendered routes remain intact, without a static SPA fallback.
