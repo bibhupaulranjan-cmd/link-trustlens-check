@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ArrowUpRight, Clock3, ShieldCheck, Trash2 } from "lucide-react";
@@ -63,7 +63,7 @@ function History() {
         <section className="min-w-0 border-t border-border pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
           <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-5">
             <div><p className="font-mono text-[11px] uppercase text-primary">History</p><h1 className="mt-2 text-3xl font-semibold">My scans</h1></div>
-            <Button asChild variant="outline" size="sm"><a href="/">Check a link <ArrowUpRight aria-hidden /></a></Button>
+            <Button asChild variant="outline" size="sm"><Link to="/">Check a link <ArrowUpRight aria-hidden /></Link></Button>
           </div>
           {isLoading && <p className="mt-6 text-muted-foreground">Loading…</p>}
           {data && data.length === 0 && <p className="mt-6 text-muted-foreground">No scans yet. Check a link from the home page.</p>}
@@ -72,8 +72,10 @@ function History() {
             <li key={s.id} className="py-3">
               <div className="flex items-center gap-3 rounded-md px-3 py-3 transition-colors hover:bg-muted/60">
                 <Button onClick={() => setOpen(open === s.id ? null : s.id)} variant="ghost" className="h-auto min-w-0 flex-1 justify-start whitespace-normal px-0 py-1 text-left">
-                  <p className="truncate font-mono text-sm">{s.host}</p>
-                  <p className="text-xs text-muted-foreground">{new Date(s.created_at).toLocaleString()}</p>
+                  <span className="flex min-w-0 flex-col items-start">
+                    <span className="max-w-full truncate font-mono text-sm">{s.host}</span>
+                    <span className="text-xs text-muted-foreground">{new Date(s.created_at).toLocaleString()}</span>
+                  </span>
                 </Button>
                 <span className={`font-semibold ${TONE[s.verdict] ?? ""}`}>{s.score}</span>
                 <Button onClick={() => remove(s.id)} variant="ghost" size="icon" aria-label="Delete scan" className="text-muted-foreground hover:text-danger">
