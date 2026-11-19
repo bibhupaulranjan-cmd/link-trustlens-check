@@ -8,13 +8,24 @@
 // hosting already compresses at the edge.
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import netlify from "@netlify/vite-plugin-tanstack-start";
 
-export default defineConfig({
-  plugins: [netlify()],
+const lovableConfig = defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
   },
 });
+
+export default async (env: Parameters<typeof lovableConfig>[0]) => {
+  const config = await lovableConfig(env);
+
+  // The Netlify adapter patches server globals during import. Keep it out of
+  // the sandbox preview process, but load it for production deployment builds.
+  if (env.command === "build") {
+    const { default: netlify } = await import("@netlify/vite-plugin-tanstack-start");
+    config.plugins = [...(config.plugins ?? []), netlify()];
+  }
+
+  return config;
+};

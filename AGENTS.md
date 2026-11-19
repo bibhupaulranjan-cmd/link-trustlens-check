@@ -32,4 +32,5 @@ use the editor.
 ## Deployment
 
 - Configure Netlify through `@netlify/vite-plugin-tanstack-start` and `netlify.toml`, publishing `dist/client`; retain the Lovable Vite wrapper so preview integrations and TanStack server-rendered routes remain intact, without a static SPA fallback.
+- Load the Netlify Vite adapter only for production builds because its dev import conflicts with sandbox preview globals; deployment builds still require the adapter.
 - GitHub Actions uses the Bun lockfile to build the TanStack Start Netlify output on pushes and verifies both `dist/client` and the Netlify server function artifact.
