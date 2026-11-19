@@ -63,7 +63,7 @@ function Home() {
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-12 lg:py-12">
-        <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+        <aside className="order-2 space-y-6 lg:order-1 lg:sticky lg:top-28 lg:self-start">
           <div className="border-b border-border pb-6">
             <p className="font-mono text-[11px] uppercase text-muted-foreground">Link intelligence</p>
             <h2 className="mt-3 text-2xl font-semibold leading-tight">A clearer view of every link.</h2>
@@ -91,7 +91,7 @@ function Home() {
           </div>
         </aside>
 
-        <section className="min-w-0 border-t border-border pt-7 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+        <section className="order-1 min-w-0 border-t border-border pt-7 lg:order-2 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="font-mono text-[11px] uppercase text-primary">Link safety check</p>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground"><span className="size-2 rounded-full bg-safe" /> Ready to check</span>
